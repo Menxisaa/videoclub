@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -37,6 +38,7 @@ class Client
     public function __construct()
     {
         $this->rents = new ArrayCollection();
+        $this->dateCreated = new DateTime();
     }
 
     public function getId(): ?int

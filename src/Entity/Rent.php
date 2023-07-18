@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\RentRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +36,11 @@ class Rent
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __construct()
+    {
+        $this->dateCreated = new DateTime();
     }
 
     public function getDateFrom(): ?\DateTimeInterface
