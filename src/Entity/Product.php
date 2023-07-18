@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,6 +39,14 @@ class Product
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateDeleted = null;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Rent::class)]
+    private Collection $rents;
+
+    public function __construct()
+    {
+        $this->rents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -135,6 +145,36 @@ class Product
     public function setDateDeleted(?\DateTimeInterface $dateDeleted): static
     {
         $this->dateDeleted = $dateDeleted;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rent>
+     */
+    public function getRents(): Collection
+    {
+        return $this->rents;
+    }
+
+    public function addRent(Rent $rent): static
+    {
+        if (!$this->rents->contains($rent)) {
+            $this->rents->add($rent);
+            $rent->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRent(Rent $rent): static
+    {
+        if ($this->rents->removeElement($rent)) {
+            // set the owning side to null (unless already changed)
+            if ($rent->getProduct() === $this) {
+                $rent->setProduct(null);
+            }
+        }
 
         return $this;
     }
