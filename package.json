@@ -1,0 +1,24 @@
+{
+  "name": "videoclub",
+  "version": "1.0.0",
+  "description": "prova",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Menxisaa/videoclub.git"
+  },
+  "author": "David",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Menxisaa/videoclub/issues"
+  },
+  "homepage": "https://github.com/Menxisaa/videoclub#readme",
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets",
+    "chart.js": "^3.4.1"
+  }
+}
