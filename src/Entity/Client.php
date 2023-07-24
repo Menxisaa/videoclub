@@ -58,6 +58,11 @@ class Client
         return $this;
     }
 
+    public function getFullName()
+    {
+        return $this->getName() . ' ' . $this->getSurname();
+    }
+
     public function getSurname(): ?string
     {
         return $this->surname;
